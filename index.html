@@ -9,20 +9,30 @@
       background-color: #0f0f0f;
       color: white;
       font-family: Arial, sans-serif;
+      padding: 20px;
       text-align: center;
-      padding: 40px;
     }
-    h1 {
-      color: #f4c10f;
-    }
+    h1 { color: #f4c10f; }
     .btn {
-      padding: 10px 20px;
       background: #1f9d55;
       color: white;
-      border: none;
+      padding: 10px 20px;
       border-radius: 5px;
-      margin-top: 20px;
+      border: none;
       cursor: pointer;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 10px;
+    }
+    th {
+      background-color: #222;
     }
   </style>
 </head>
@@ -30,20 +40,43 @@
   <h1>Super One Premium</h1>
   <p>Welcome to the Soccer Prediction Platform</p>
   <button class="btn">Get Predictions</button>
+
+  <!-- Prediction Table Section -->
+  <section class="predictions">
+    <h2>Today's Match Predictions</h2>
+    <table id="predictionTable">
+      <thead>
+        <tr>
+          <th>Match</th>
+          <th>Prediction</th>
+          <th>Odds</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Prediction rows will be loaded here -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- JavaScript for loading prediction data -->
+  <script>
+    fetch('data/prediction.json')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector("#predictionTable tbody");
+        data.forEach(prediction => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${prediction.match}</td>
+            <td>${prediction.tip}</td>
+            <td>${prediction.odds}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error("Prediction Load Error:", error);
+      });
+  </script>
 </body>
 </html>
-<body><section class="predictions">
-  <h2>Today's Match Predictions</h2>
-  <table id="predictionTable">
-    <thead>
-      <tr>
-        <th>Match</th>
-        <th>Prediction</th>
-        <th>Odds</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Prediction rows will be loaded here -->
-    </tbody>
-  </table>
-</section></body>
