@@ -1,0 +1,17 @@
+[
+  {
+    "match": "Liverpool vs Man City",
+    "tip": "Draw",
+    "odds": "3.25"
+  },
+  {
+    "match": "Real Madrid vs Barcelona",
+    "tip": "Real Madrid Win",
+    "odds": "2.10"
+  },
+  {
+    "match": "Chelsea vs Arsenal",
+    "tip": "Arsenal Win",
+    "odds": "1.95"
+  }
+]
