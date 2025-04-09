@@ -15,22 +15,3 @@
     "odds": "1.95"
   }
 ]
-</body><script>
-  fetch('public/data/prediction.json')
-    .then(response => response.json())
-    .then(data => {
-      const tableBody = document.querySelector("#predictionTable tbody");
-      data.forEach(prediction => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${prediction.match}</td>
-          <td>${prediction.tip}</td>
-          <td>${prediction.odds}</td>
-        `;
-        tableBody.appendChild(row);
-      });
-    })
-    .catch(error => {
-      console.error("Prediction Load Error:", error);
-    });
-</script>
